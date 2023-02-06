@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EligeclaseActivity"
+
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="335dp"
+        android:layout_height="289dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="38dp"
+        android:contentDescription="@string/imagen_de_inicio"
+        app:layout_constraintBottom_toTopOf="@+id/BtnGuerrero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/inicio"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/BtnGuerrero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="51dp"
+        android:fontFamily="times"
+        android:shadowColor="#786D6D"
+        android:text="@string/guerrero"
+        app:layout_constraintBottom_toTopOf="@+id/btnMago"
+        app:layout_constraintEnd_toStartOf="@+id/btnLadron"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnLadron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="51dp"
+        android:fontFamily="times"
+        android:text="@string/ladron"
+        app:layout_constraintBottom_toTopOf="@+id/berserker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BtnGuerrero"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textSize="20sp"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btnMago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="183dp"
+        android:fontFamily="times"
+        android:text="@string/mago"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/berserker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnGuerrero"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/berserker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="times"
+        android:text="@string/berserker"
+        app:layout_constraintBottom_toTopOf="@+id/btnAceptar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btnMago"
+        app:layout_constraintTop_toBottomOf="@+id/btnLadron"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="85dp"
+        android:fontFamily="times"
+        android:text="@string/aceptar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/berserker"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

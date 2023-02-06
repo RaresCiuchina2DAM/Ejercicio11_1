@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Ejercicio11_Mercader</string>
+    <string name="imagen_de_inicio">imagen de inicio</string>
+    <string name="guerrero">GUERRERO</string>
+    <string name="ladron">LADRON</string>
+    <string name="mago">MAGO</string>
+    <string name="berserker">BERSERKER</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="elfo">ELFO</string>
+    <string name="enano">ENANO</string>
+    <string name="goblin">GOBLIN</string>
+    <string name="humano">HUMANO</string>
+    <string name="empezar_a_jugar"> Empezar a Jugar </string>
+    <string name="ingrese_su_nombre">Introduzca el nombre de tu jugador</string>
+    <string name="hasta_ahora_has_seleccionado_los_siguientes_atributos_para_tu_personaje">Hasta ahora, has seleccionado los siguientes atributos para tu personaje</string>
+    <string name="Asignar">Asignar</string>
+</resources>

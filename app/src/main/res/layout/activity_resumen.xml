@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".ResumenActivity">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:stretchColumns="*">
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/Resumen"
+                android:layout_width="321dp"
+                android:layout_height="211dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="37dp"
+                android:layout_marginBottom="43dp"
+                android:layout_span="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="@string/hasta_ahora_has_seleccionado_los_siguientes_atributos_para_tu_personaje"
+                android:textSize="30sp"
+                android:textStyle="bold|italic" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="176dp"
+            android:layout_marginStart="8dp"
+
+            >
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="190dp"
+                android:layout_height="37dp"
+                android:fontFamily="times"
+                android:text="@string/ingrese_su_nombre"
+                android:textSize="18sp" />
+
+
+        </TableRow>
+
+
+        <TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/EtNombre"
+                    android:layout_width="283dp"
+                    android:layout_height="69dp"
+                    android:autofillHints="Nombre"
+                    android:inputType="textPersonName"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/btnAsignar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="59dp"
+                    android:text="@string/Asignar" />
+
+            </TableRow>
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/resumen2"
+                android:layout_width="269dp"
+                android:layout_height="89dp"
+                android:layout_marginStart="63dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="63dp"
+                android:layout_marginBottom="18dp"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="Has elegido que tu personaje sea:"
+                android:textSize="30sp"
+                android:textStyle="bold|italic" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView"
+
+                    android:layout_width="142dp"
+                    android:layout_height="45dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Nombre:" />
+
+                <TextView
+                    android:id="@+id/MostrarNombreAsignado"
+                    android:layout_width="235dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="37dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text=""
+                    android:textStyle="bold|italic" />
+
+
+            </TableRow>
+        </TableRow>
+
+        <TableRow>
+
+            <TableRow>
+
+
+                <ImageView
+                    android:id="@+id/ImagenClase"
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="imagenclase" />
+
+                <ImageView
+                    android:id="@+id/ImagenRaza"
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="imagenclase" />
+
+            </TableRow>
+        </TableRow>
+
+
+        <TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/fuerza"
+                    android:layout_width="184dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Fuerza :" />
+
+                <TextView
+                    android:id="@+id/tvfuerza"
+                    android:layout_width="124dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/defensa"
+                    android:layout_width="184dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Defensa:" />
+
+
+                <TextView
+                    android:id="@+id/tvdefensa"
+                    android:layout_width="124dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tamanyoMochila"
+                    android:layout_width="184dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Tamaño de la Mochila:" />
+
+                <TextView
+                    android:id="@+id/tvtamanyoMochila"
+                    android:layout_width="124dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:fontFamily="times"
+                    android:gravity="center" />
+
+            </TableRow>
+
+        </TableRow>
+
+
+        <TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/vida"
+                    android:layout_width="184dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Vida:" />
+
+
+                <TextView
+                    android:id="@+id/tvvida"
+                    android:layout_width="124dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:fontFamily="times"
+                    android:gravity="center" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/monedero"
+                    android:layout_width="184dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="Monedas en tu monedero:" />
+
+                <TextView
+                    android:id="@+id/tvmonedero"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="37dp"
+                    android:layout_marginBottom="7dp"
+                    android:fontFamily="times"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+        </TableRow>
+
+
+        <TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Volver a empezar" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="144dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Empezar la aventura" />
+
+            </TableRow>
+        </TableRow>
+
+
+    </TableLayout>
+</ScrollView>
+
+
+

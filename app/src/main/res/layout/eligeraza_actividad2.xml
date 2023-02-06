@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EligerazaActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="335dp"
+        android:layout_height="289dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="53dp"
+        android:contentDescription="@string/imagen_de_inicio"
+        app:layout_constraintBottom_toTopOf="@+id/BtnGoblin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/inicio" />
+
+    <Button
+        android:id="@+id/BtnElfo"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="27dp"
+        android:backgroundTint="@null"
+        android:fontFamily="times"
+        android:text="@string/elfo"
+        app:layout_constraintBottom_toTopOf="@+id/btnAceptar"
+        app:layout_constraintEnd_toStartOf="@+id/BtnEnano"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnHumano"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/BtnEnano"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="27dp"
+        android:backgroundTint="@null"
+        android:fontFamily="times"
+        android:text="@string/enano"
+        app:layout_constraintBottom_toTopOf="@+id/btnAceptar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BtnElfo"
+        app:layout_constraintTop_toBottomOf="@+id/BtnGoblin"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/BtnGoblin"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@null"
+        android:fontFamily="times"
+        android:text="@string/goblin"
+        app:layout_constraintBottom_toTopOf="@+id/BtnEnano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BtnHumano"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/BtnHumano"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@null"
+        android:fontFamily="times"
+        android:text="@string/humano"
+
+        app:layout_constraintBottom_toTopOf="@+id/BtnElfo"
+        app:layout_constraintEnd_toStartOf="@+id/BtnGoblin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="277dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="66dp"
+        android:backgroundTint="@null"
+        android:fontFamily="times"
+        android:text="@string/aceptar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BtnElfo"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

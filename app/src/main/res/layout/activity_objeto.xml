@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ObjetoActivity">
+
+
+
+
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+      >
+
+
+        <TableRow>
+
+            <TextView android:id="@+id/DondeEstoy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_span="1"
+                android:text="Recoger objeto"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+        </TableRow>
+
+        <TableRow >
+
+            <ImageView
+                android:id="@+id/imagenObjeto"
+                android:layout_width="335dp"
+                android:layout_height="289dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_span="2"
+                android:src="@drawable/inicio"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+
+
+                />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView android:id="@+id/Objeto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_span="1"
+                android:text="Objeto"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+        </TableRow>
+
+
+        <TableRow
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="16dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginBottom="10dp">
+
+
+            <Button
+                android:id="@+id/BtnRecoger"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="Recoger"
+
+
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/BtnContinuar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:layout_span="1"
+                android:text="Continuar"
+                android:textSize="20sp"
+                style="?android:attr/buttonBarButtonStyle" />
+
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
