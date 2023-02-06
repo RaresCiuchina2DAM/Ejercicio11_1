@@ -10,7 +10,7 @@ class Jugador : java.io.Serializable
         var vida: Int = 200
         lateinit var monedero: HashMap<String, Int>
         var tamanyoMochila: Int = 100
-        lateinit var mochila: ArrayList<Objeto>
+        lateinit var mochila: MutableList<Objeto>
         var sumPeso = 0
         var sumValor = 0
 

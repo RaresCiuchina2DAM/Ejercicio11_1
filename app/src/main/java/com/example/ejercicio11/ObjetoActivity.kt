@@ -45,7 +45,11 @@ class ObjetoActivity : AppCompatActivity() {
 
         binding.BtnRecoger.setOnClickListener {
 
-
+            //si pulsas el botón recoger, se añade el objeto a la mochila del jugador
+            jugador.mochila.add(listaObjetos.random())
+            val intent = Intent(this, DadoActivity::class.java)
+            intent.putExtra("jugador", jugador)
+            startActivity(intent)
 
         }
 
