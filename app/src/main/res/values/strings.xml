@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ejercicio11_Mercader</string>
+    <string name="app_name">Ejercicio11</string>
     <string name="imagen_de_inicio">imagen de inicio</string>
     <string name="guerrero">GUERRERO</string>
     <string name="ladron">LADRON</string>

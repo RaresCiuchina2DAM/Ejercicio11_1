@@ -17,6 +17,7 @@ class EligerazaActivity : AppCompatActivity() {
 
         val jugador = Jugador("","","")
 
+
         binding.imageView.setImageResource(R.drawable.inicio)
 
 

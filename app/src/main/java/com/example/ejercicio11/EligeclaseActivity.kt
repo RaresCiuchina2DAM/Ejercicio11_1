@@ -2,6 +2,7 @@ package com.example.ejercicio11
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejercicio11.databinding.EligeclaseActividad2Binding
 import com.google.gson.Gson
@@ -48,6 +49,16 @@ class EligeclaseActivity : AppCompatActivity() {
 
 
         binding.btnAceptar.setOnClickListener {
+            if (jugador.clase == "") {
+                Toast.makeText(this, "Debes de elegir una clase antes de continuar", Toast.LENGTH_LONG).show()
+            } else {
+                val intent = Intent(this, ResumenActivity::class.java)
+                intent.putExtra("jugador", jugador)
+                startActivity(intent)
+                finish()
+            }
+
+
             val intent = Intent(this, ResumenActivity::class.java)
             intent.putExtra("jugador", jugador)
 
