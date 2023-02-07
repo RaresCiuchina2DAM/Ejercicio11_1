@@ -21,57 +21,60 @@ class ObjetoActivity : AppCompatActivity() {
         val jugadorRecibido = intent.getSerializableExtra("jugador") as Jugador
 
         //asignar los valores del jugador recibido al jugador de esta actividad
+        jugador.tamanyoMochila = jugadorRecibido.tamanyoMochila
         jugador.raza = jugadorRecibido.raza
         jugador.nombre = jugadorRecibido.nombre
         jugador.clase = jugadorRecibido.clase
         jugador.mochila = jugadorRecibido.mochila
         jugador.monedero = jugadorRecibido.monedero
         jugador.defensa = jugadorRecibido.defensa
-        jugador.tamanyoMochila = jugadorRecibido.tamanyoMochila
         jugador.vida = jugadorRecibido.vida
         jugador.fuerza = jugadorRecibido.fuerza
 
 
-        var random_elegido = (0..6).random()
-        //crear un hasmap para poder asignarle un nombre a cada imagen
-        val mapaObjetos = mutableMapOf<Int, String>()
-        mapaObjetos.put(R.drawable.arma, "Arma")
-        mapaObjetos.put(R.drawable.armadura, "Armadura")
-        mapaObjetos.put(R.drawable.armadura_oro, "Armadura de oro")
-        mapaObjetos.put(R.drawable.espada_diamante, "Espada de Diamante")
-        mapaObjetos.put(R.drawable.lanza, "Lanza")
-        mapaObjetos.put(R.drawable.pocion, "Poción")
-        mapaObjetos.put(R.drawable.talisman, "Talismán")
 
-        //asignar el objeto aleatorio a la imagen
-        binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
-        //asignar el nombre del objeto a la variable nombreObjeto
-        binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
-        //ver capacidad restante de la mochila
-        binding.CapacidadMochila.text = "     " + jugador.tamanyoMochila.toString() + "/" + 100
+            //generar un número aleatorio entre 0 y 6
+            var random_elegido = (0..6).random()
+
+            //crear un hasmap para poder asignarle un nombre a cada imagen
+            val mapaObjetos = mutableMapOf<Int, String>()
+            mapaObjetos[R.drawable.arma] = "Arma"
+            mapaObjetos[R.drawable.armadura] = "Armadura"
+            mapaObjetos[R.drawable.armadura_oro] = "Armadura de oro"
+            mapaObjetos[R.drawable.espada_diamante] = "Espada de Diamante"
+            mapaObjetos[R.drawable.lanza] = "Lanza"
+            mapaObjetos[R.drawable.pocion] = "Poción"
+            mapaObjetos[R.drawable.talisman] = "Talismán"
+
+            //asignar el objeto aleatorio a la imagen
+            binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
+            //asignar el nombre del objeto a la variable nombreObjeto
+            binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
+            //ver capacidad restante de la mochila
+
+            var sumpeso = 100-jugador.sumPeso
+            binding.CapacidadMochila.text = "     " + sumpeso.toString() + "/" + 100
+
+            binding.BtnRecoger.setOnClickListener {
+                //Creamos el objeto que se va a recoger
+                val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
+
+                //recogemos el objeto
+                jugador = recoger(jugador, objetoSeleccionado, this)
+
+                //eliminamos el objeto de la lista de objetos
+                mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
+
+                //Actualizamos
+                var sumpeso = 100-jugador.sumPeso
+                binding.CapacidadMochila.text = "     " + sumpeso.toString() + "/" + 100
 
 
-
-        binding.BtnRecoger.setOnClickListener {
-            //Creamos el objeto que se va a recoger
-            val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
-
-            //recogemos el objeto
-            jugador = recoger(jugador, objetoSeleccionado, this)
-
-            //eliminamos el objeto de la lista de objetos
-            mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
-
-            //Vamos a la actividad dado
-            val intent = Intent(this, DadoActivity::class.java)
-            intent.putExtra("jugador", jugador)
-            startActivity(intent)
-
-
-        }
+            }
 
         //si pulsas el botón Continuar se vuelve a la actividad dado
         binding.BtnContinuar.setOnClickListener {
+            binding.BtnContinuar.isPressed = true
             val intent = Intent(this, DadoActivity::class.java)
             intent.putExtra("jugador", jugador)
             startActivity(intent)
@@ -104,7 +107,7 @@ fun recoger(
         jugador.mochila.add(objeto)
         Toast.makeText(contexto, "Has recogido ${objeto}", Toast.LENGTH_LONG).show()
         // Se resta el peso del objeto a la capacidad de la mochila del jugador
-        jugador.tamanyoMochila - objeto.peso
+        jugador.sumPeso+=objeto.peso
 
     }
 

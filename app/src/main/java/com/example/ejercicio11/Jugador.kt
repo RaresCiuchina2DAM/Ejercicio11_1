@@ -16,6 +16,7 @@ class Jugador : java.io.Serializable
         var sumPeso = 0
         var sumValor = 0
 
+
         constructor(nombre: String, raza: String, clase: String) {
             this.nombre = nombre
             this.raza = raza
