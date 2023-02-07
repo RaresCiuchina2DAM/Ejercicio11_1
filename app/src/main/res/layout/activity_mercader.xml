@@ -50,7 +50,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:fontFamily="times"
-                android:text="Continuar"
+                android:text="@string/Continuar"
                 android:textSize="20sp"
                 android:gravity="center"/>
 

@@ -31,6 +31,7 @@
                 android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="times"
                 />
 
         </TableRow>
@@ -77,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CAPACIDAD DE LA MOCHILA"
+                android:fontFamily="times"
                 />
 
             <TextView
@@ -84,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-
+                android:fontFamily="sans-serif-black"
                 />
 
 
@@ -103,13 +105,12 @@
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="0dp"
                 android:layout_span="1"
                 android:layout_weight="1"
                 android:fontFamily="times"
                 android:gravity="center"
                 android:text="Recoger"
-
-
                 android:textSize="20sp" />
 
             <Button
@@ -119,9 +120,10 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:fontFamily="times"
+                android:layout_marginEnd="20sp"
                 android:gravity="center"
                 android:layout_span="1"
-                android:text="Continuar"
+                android:text="@string/Continuar"
                 android:textSize="20sp"
                 style="?android:attr/buttonBarButtonStyle" />
 
