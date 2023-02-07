@@ -1,5 +1,7 @@
 package com.example.ejercicio11
 
+import android.os.Parcelable
+
 class Jugador : java.io.Serializable
     {
         var raza: String
@@ -8,7 +10,7 @@ class Jugador : java.io.Serializable
         var defensa: Int = (1..5).random()
         var fuerza: Int = (10..15).random()
         var vida: Int = 200
-        lateinit var monedero: HashMap<String, Int>
+        var monedero: HashMap<String, Int>
         var tamanyoMochila: Int = 100
         lateinit var mochila: MutableList<Objeto>
         var sumPeso = 0
@@ -20,9 +22,12 @@ class Jugador : java.io.Serializable
             this.clase = clase
 
         }
+        init {
+            monedero = HashMap()
+        }
     }
 
-class Objeto {
+class Objeto : java.io.Serializable {
 
     var peso: Int = 0
     var valor: Int = 0
@@ -32,6 +37,10 @@ class Objeto {
 
     constructor (nombre: String) {
         this.nombre = nombre
+    }
+
+    override fun toString(): String {
+        return "El Objeto con Nombre='$nombre',\t con peso=$peso,\t con valor=$valor,\t y con vida=$vida)"
     }
     init {
 

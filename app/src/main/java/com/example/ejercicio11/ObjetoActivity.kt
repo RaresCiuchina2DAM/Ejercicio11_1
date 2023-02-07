@@ -1,8 +1,9 @@
 package com.example.ejercicio11
 
+import android.content.Context
 import android.content.Intent
-
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejercicio11.databinding.ActivityObjetoBinding
 
@@ -12,8 +13,10 @@ class ObjetoActivity : AppCompatActivity() {
         val binding = ActivityObjetoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //cada vez que abramos la actividad, se pondrá un objeto aleatorio del arraay en el imageView
 
-        val jugador = Jugador("","","")
+
+        var jugador = Jugador("", "", "")
         //recoger el objeto jugador que se ha pasado por el intent
         val jugadorRecibido = intent.getSerializableExtra("jugador") as Jugador
 
@@ -29,66 +32,86 @@ class ObjetoActivity : AppCompatActivity() {
         jugador.fuerza = jugadorRecibido.fuerza
 
 
-        val aDrawable = arrayOf(R.drawable.lanza,R.drawable.arma)
+        var random_elegido = (0..6).random()
+        //crear un hasmap para poder asignarle un nombre a cada imagen
+        val mapaObjetos = mutableMapOf<Int, String>()
+        mapaObjetos.put(R.drawable.arma, "Arma")
+        mapaObjetos.put(R.drawable.armadura, "Armadura")
+        mapaObjetos.put(R.drawable.armadura_oro, "Armadura de oro")
+        mapaObjetos.put(R.drawable.espada_diamante, "Espada de Diamante")
+        mapaObjetos.put(R.drawable.lanza, "Lanza")
+        mapaObjetos.put(R.drawable.pocion, "Poción")
+        mapaObjetos.put(R.drawable.talisman, "Talismán")
 
-        val listaObjetos = mutableListOf<Objeto>(Objeto("Lanza"), Objeto("Arma"))
+        //asignar el objeto aleatorio a la imagen
+        binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
+        //asignar el nombre del objeto a la variable nombreObjeto
+        binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
+        //ver capacidad restante de la mochila
+        binding.CapacidadMochila.text = "     " + jugador.tamanyoMochila.toString() + "/" + 100
 
 
-        //cada vez que abramos la actividad, se pondrá un objeto aleatorio del arraay en el imageView
-        binding.imagenObjeto.setImageResource(aDrawable.random())
-
-        if (binding.imagenObjeto.equals(aDrawable[0])) {
-            binding.Objeto.text = listaObjetos[0].nombre
-        } else {
-            binding.Objeto.text = listaObjetos[1].nombre
-        }
 
         binding.BtnRecoger.setOnClickListener {
+            //Creamos el objeto que se va a recoger
+            val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
 
-            //si pulsas el botón recoger, se añade el objeto a la mochila del jugador
-            jugador.mochila.add(listaObjetos.random())
+            //recogemos el objeto
+            jugador = recoger(jugador, objetoSeleccionado, this)
+
+            //eliminamos el objeto de la lista de objetos
+            mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
+
+            //Vamos a la actividad dado
             val intent = Intent(this, DadoActivity::class.java)
             intent.putExtra("jugador", jugador)
             startActivity(intent)
+
 
         }
 
         //si pulsas el botón Continuar se vuelve a la actividad dado
         binding.BtnContinuar.setOnClickListener {
             val intent = Intent(this, DadoActivity::class.java)
+            intent.putExtra("jugador", jugador)
             startActivity(intent)
         }
     }
-}
-
-fun robar(Ladron: Jugador, articulos: MutableList<Objeto>): MutableList<Objeto> {
-    //Saca la rentabilidad de cada objeto y lo añade en orden a un array del mismo tamaño que el original
-    val rentabilidad = Array<Double>(size = articulos.size) { 0.00 }
-    for (i in articulos.indices) {
-        rentabilidad[i] = (articulos[i].valor / articulos[i].peso).toDouble()
-    }
-
-
-    //Recorre el array una y otra vez, hasta que no entre nada más en la mochila
-    while (Ladron.tamanyoMochila > Ladron.sumPeso && rentabilidad.max() != 0.0) {
-        for (i in rentabilidad.indices) {
-
-            if (rentabilidad[i] == rentabilidad.max() && rentabilidad[i] != 0.0) {
-                if (Ladron.sumPeso + articulos[i].peso <= Ladron.tamanyoMochila) {
-                    Ladron.sumPeso += articulos[i].peso
-                    Ladron.sumValor += articulos[i].valor
-
-                    Ladron.mochila.add(articulos[i])
-                    rentabilidad[i] = 0.0
-                    articulos.removeAt(i)
-                } else
-                    rentabilidad[i] = 0.0
-
-            }
-        }
-
-    }
-
-    return Ladron.mochila
 
 }
+
+/*
+@function Función que recoge un objeto de la lista, un jugador y el objeto que se quiere recoger,
+comprueba si hay espacio en la mochila y si lo hay, añade el objeto a la mochila y lo elimina de la lista de objetos
+si no hay espacio, lanza un toast con el mensaje de que no hay espacio
+@param jugador: Jugador, listaObjetos: MutableList<Objeto>, objeto: Objeto
+@return jugador: Jugador
+ */
+fun recoger(
+    jugador /*Jugador que quieras añadirle el objeto*/: Jugador,
+    objeto /*objeto*/: Objeto,
+    contexto  /* contexto*/: Context
+): Jugador {
+
+
+    //Se comprueba que el objeto que se quiere recoger quepa dentro de la capacidad de la mochila
+
+    if (jugador.tamanyoMochila < objeto.peso) {
+        //si no cabe, se lanza un toast con el mensaje de que no cabe
+        Toast.makeText(contexto, "No cabe en la mochila", Toast.LENGTH_LONG).show()
+    } else if (jugador.tamanyoMochila >= objeto.peso) {
+        //si cabe, se añade el objeto a la mochila
+        jugador.mochila.add(objeto)
+        Toast.makeText(contexto, "Has recogido ${objeto}", Toast.LENGTH_LONG).show()
+        // Se resta el peso del objeto a la capacidad de la mochila del jugador
+        jugador.tamanyoMochila - objeto.peso
+
+    }
+
+    return jugador
+}
+
+
+
+
+

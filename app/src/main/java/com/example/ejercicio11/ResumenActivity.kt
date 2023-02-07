@@ -82,6 +82,10 @@ class ResumenActivity : AppCompatActivity() {
         jugador.monedero = hashMapOf("Monedas" to 0)
         binding.tvmonedero.text = jugador.monedero.toString()
 //
+        jugador.mochila = arrayListOf(Objeto(""))
+
+
+
         binding.button.setOnClickListener {
             val intent = Intent(this, DadoActivity::class.java)
             intent.putExtra("jugador", jugador)
@@ -93,6 +97,8 @@ class ResumenActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+
 
     }
 }

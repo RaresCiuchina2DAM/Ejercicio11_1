@@ -11,5 +11,7 @@ class BlancaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
+
     }
 }

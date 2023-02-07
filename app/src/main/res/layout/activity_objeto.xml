@@ -60,7 +60,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:layout_span="1"
-                android:text="Objeto"
+                android:text=""
                 android:textSize="20sp"
                 android:gravity="center"
                 android:layout_marginTop="20dp"
@@ -69,6 +69,26 @@
 
         </TableRow>
 
+        <TableRow>
+
+            <TextView
+                android:layout_marginStart="30dp"
+                android:id="@+id/CapacidadMochilaText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CAPACIDAD DE LA MOCHILA"
+                />
+
+            <TextView
+                android:id="@+id/CapacidadMochila"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+
+                />
+
+
+        </TableRow>
 
         <TableRow
             tools:layout_editor_absoluteX="12dp"

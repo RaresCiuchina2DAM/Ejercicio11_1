@@ -13,6 +13,7 @@ class DadoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val jugador = Jugador("","","")
+
         //recoger el objeto jugador que se ha pasado por el intent
         val jugadorRecibido = intent.getSerializableExtra("jugador") as Jugador
 
@@ -20,10 +21,12 @@ class DadoActivity : AppCompatActivity() {
         jugador.raza = jugadorRecibido.raza
         jugador.nombre = jugadorRecibido.nombre
         jugador.clase = jugadorRecibido.clase
-        jugador.nombre = jugadorRecibido.nombre
+        jugador.vida = jugadorRecibido.vida
+        jugador.fuerza = jugadorRecibido.fuerza
+        jugador.mochila = jugadorRecibido.mochila
 
 
-
+        binding.imageView.setImageResource(R.drawable.inicio)
         //Al pulsar el dado se ejecutará una función aleatoria que devolverá un número del 1 al 4
 
         binding.btonDado.setOnClickListener {
