@@ -14,4 +14,6 @@
     <string name="ingrese_su_nombre">Introduzca el nombre de tu jugador</string>
     <string name="hasta_ahora_has_seleccionado_los_siguientes_atributos_para_tu_personaje">Hasta ahora, has seleccionado los siguientes atributos para tu personaje</string>
     <string name="Asignar">Asignar</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="Continuar">CONTINUAR</string>
 </resources>
