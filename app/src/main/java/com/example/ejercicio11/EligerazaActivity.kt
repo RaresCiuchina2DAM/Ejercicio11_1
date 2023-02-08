@@ -16,7 +16,11 @@ class EligerazaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val jugador = Jugador("","","")
-
+        jugador.monedero.put(1, 0)
+        jugador.monedero.put(5, 0)
+        jugador.monedero.put(10, 0)
+        jugador.monedero.put(25, 0)
+        jugador.monedero.put(100,0)
 
         binding.imageView.setImageResource(R.drawable.inicio)
 

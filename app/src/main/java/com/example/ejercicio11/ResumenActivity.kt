@@ -79,7 +79,6 @@ class ResumenActivity : AppCompatActivity() {
         binding.tvdefensa.text = jugador.defensa.toString()
         binding.tvtamanyoMochila.text = jugador.tamanyoMochila.toString()
         binding.tvvida.text = jugador.vida.toString()
-        jugador.monedero = hashMapOf("Monedas" to 0)
         binding.tvmonedero.text = jugador.monedero.toString()
 //
         jugador.mochila = arrayListOf(Objeto(""))

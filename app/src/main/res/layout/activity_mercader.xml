@@ -16,9 +16,86 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TableRow>
+
+            <TextView
+                android:id="@+id/DondeEstoy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="Mercadear"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/imagenObjeto"
+                android:layout_width="335dp"
+                android:layout_height="289dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_span="2"
+                android:layout_weight="1"
+                android:src="@drawable/inicio"
+
+
+                />
+
+        </TableRow>
+
+        <!--        CREAR DOS BOTONES(UNO MÁS(A LA DERECHA) Y OTRO MENOS(A LA IZQUIERDA) Y UN TEXT VIEW DEL NUMERO EN EL CENTRO-->
+
         <TableRow
             android:layout_height="291dp"
-            android:layout_marginTop="650dp"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="116dp">
+
+            <Button
+                android:id="@+id/BtnMenos"
+                android:text="-"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+               />
+
+            <TextView
+                android:id="@+id/NumeroVeces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="20sp"
+               />
+
+            <Button
+                android:id="@+id/BtnMas"
+                android:text="+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/BotonesComerciaryContinuar"
+            android:layout_height="291dp"
+            android:layout_marginTop="10dp"
             tools:layout_editor_absoluteX="12dp"
             tools:layout_editor_absoluteY="116dp">
 
@@ -28,12 +105,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="16sp"
                 android:layout_weight="1"
                 android:fontFamily="times"
+                android:gravity="center"
                 android:text="COMERCIAR"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                />
 
             <Button
                 android:id="@+id/BtnContinuar"
@@ -50,11 +128,57 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:fontFamily="times"
+                android:gravity="center"
                 android:text="@string/Continuar"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
         </TableRow>
+
+        <TableRow
+            android:id="@+id/BotonesComprarVender"
+            android:layout_height="291dp"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="116dp">
+
+
+            <Button
+                android:id="@+id/BtnComprar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="COMPRAR"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/BtnVender"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="times"
+                android:layout_marginStart="16sp"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:text="VENDER"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/BtnCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginStart="16sp"
+                android:layout_weight="0"
+                android:layout_marginEnd="16sp"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="CANCELAR"
+                android:textSize="15sp" />
+
+
+        </TableRow>
+
     </TableLayout>
 
 
