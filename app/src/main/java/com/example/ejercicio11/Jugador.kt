@@ -1,8 +1,9 @@
 package com.example.ejercicio11
 
 import android.os.Parcelable
+import java.io.Serializable
 
-class Jugador : java.io.Serializable
+class Jugador : Serializable
     {
         var raza: String
         var clase: String

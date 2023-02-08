@@ -7,65 +7,49 @@
     tools:context=".ObjetoActivity">
 
 
-
-
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-      >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TableRow>
 
-            <TextView android:id="@+id/DondeEstoy"
+            <TextView
+                android:id="@+id/DondeEstoy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_span="1"
-                android:text="Recoger objeto"
-                android:textSize="20sp"
-                android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:layout_span="1"
+                android:layout_weight="1"
                 android:fontFamily="times"
-                />
+                android:gravity="center"
+                android:text="Recoger objeto"
+                android:textSize="20sp" />
 
         </TableRow>
 
-        <TableRow >
+        <TableRow>
 
             <ImageView
                 android:id="@+id/imagenObjeto"
                 android:layout_width="335dp"
                 android:layout_height="289dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_span="2"
-                android:src="@drawable/inicio"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="50dp"
-
-
-                />
-
-        </TableRow>
-
-        <TableRow>
-            <TextView android:id="@+id/Objeto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_span="2"
                 android:layout_weight="1"
-                android:layout_span="1"
-                android:text=""
-                android:textSize="20sp"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:src="@drawable/inicio"
+
+
                 />
 
         </TableRow>
@@ -73,36 +57,71 @@
         <TableRow>
 
             <TextView
-                android:layout_marginStart="30dp"
+                android:id="@+id/Objeto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
                 android:id="@+id/CapacidadMochilaText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CAPACIDAD DE LA MOCHILA"
+                android:layout_marginStart="30dp"
                 android:fontFamily="times"
-                />
+                android:text="CAPACIDAD DE LA MOCHILA" />
 
             <TextView
                 android:id="@+id/CapacidadMochila"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:fontFamily="sans-serif-black"
-                />
+                android:text="" />
 
 
         </TableRow>
 
         <TableRow
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
             tools:layout_editor_absoluteX="12dp"
-            tools:layout_editor_absoluteY="16dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginBottom="10dp">
+            tools:layout_editor_absoluteY="16dp">
+
+
+            <TextView
+                android:id="@+id/Contenidodelamochila"
+                android:layout_width="318dp"
+                android:layout_height="90sp"
+                android:layout_marginStart="30dp"
+                android:layout_span="2"
+                android:fontFamily="times"
+                android:textSize="4sp"
+                android:text="" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="16dp">
 
 
             <Button
                 android:id="@+id/BtnRecoger"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="128dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="0dp"
@@ -115,17 +134,17 @@
 
             <Button
                 android:id="@+id/BtnContinuar"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="20sp"
+                android:layout_span="1"
                 android:layout_weight="1"
                 android:fontFamily="times"
-                android:layout_marginEnd="20sp"
                 android:gravity="center"
-                android:layout_span="1"
                 android:text="@string/Continuar"
-                android:textSize="20sp"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textSize="20sp" />
 
         </TableRow>
     </TableLayout>

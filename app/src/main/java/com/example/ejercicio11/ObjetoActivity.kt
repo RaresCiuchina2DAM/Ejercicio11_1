@@ -3,6 +3,7 @@ package com.example.ejercicio11
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Binder
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ class ObjetoActivity : AppCompatActivity() {
         val binding = ActivityObjetoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var jugador = Jugador("", "", "")
+        val jugador = Jugador("", "", "")
         //recoger el objeto jugador que se ha pasado por el intent
         val jugadorRecibido = intent.getSerializableExtra("jugador") as Jugador
 
@@ -43,7 +44,7 @@ class ObjetoActivity : AppCompatActivity() {
         mapaObjetos[R.drawable.talisman] = "Talismán"
 
         //generar un número aleatorio entre 0 y 6
-        var random_elegido = (0..mapaObjetos.size).random()
+        var random_elegido = (0 until mapaObjetos.size).random()
         //asignar el objeto aleatorio a la imagen
         binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
         //asignar el nombre del objeto a la variable Objeto
@@ -59,7 +60,7 @@ class ObjetoActivity : AppCompatActivity() {
             val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
 
             //recogemos el objeto
-            jugador = recoger(jugador, objetoSeleccionado, this)
+            recoger(jugador, objetoSeleccionado, this)
 
             //eliminamos el objeto de la lista de objetos
             mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
@@ -68,19 +69,26 @@ class ObjetoActivity : AppCompatActivity() {
             var sumpeso = 100 - jugador.sumPeso
             binding.CapacidadMochila.text = "     $sumpeso/100"
 
+            binding.Contenidodelamochila.text = jugador.mochila.toString()
 
             //repetimos codigo para generar un objeto cada vez que se pulsa el botón recoger, hasta que no queden objetos en la lista o se llene la mochila
 
             //si no quedan objetos en la lista, se deshabilita el botón de recoger
             if (mapaObjetos.isEmpty()) {
                 binding.BtnRecoger.isEnabled = false
+                Toast.makeText(this, "No existen más objetos", Toast.LENGTH_LONG).show()
+
             } else{
                 random_elegido = (0 until mapaObjetos.size).random()
                 binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
                 binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
                 sumpeso = 100 - jugador.sumPeso
                 binding.CapacidadMochila.text = "     $sumpeso/100"
+                binding.Contenidodelamochila.text = jugador.mochila.toString()
+
             }
+
+
 
         }
 
@@ -88,11 +96,10 @@ class ObjetoActivity : AppCompatActivity() {
         binding.BtnContinuar.setOnClickListener {
             //utilizar un bundle para pasar el objeto jugador a la siguiente actividad
 
-            val bundle = Bundle()
-            bundle.putSerializable("jugador", jugador)
             val intent = Intent(this, BlancaActivity::class.java)
-            intent.putExtras(bundle)
+            intent.putExtra("jugador", jugador)
             startActivity(intent)
+
         }
     }
 
@@ -116,13 +123,13 @@ fun recoger(
 
     if (jugador.tamanyoMochila < objeto.peso) {
         //si no cabe, se lanza un toast con el mensaje de que no cabe
-        Toast.makeText(contexto, "No cabe en la mochila", Toast.LENGTH_LONG).show()
+        Toast.makeText(contexto, "No cabe en la mochila", Toast.LENGTH_SHORT).show()
 
     } else
         {
         //si cabe, se añade el objeto a la mochila
         jugador.mochila.add(objeto)
-        Toast.makeText(contexto, "Has recogido $objeto", Toast.LENGTH_LONG).show()
+        Toast.makeText(contexto, "Has recogido $objeto", Toast.LENGTH_SHORT).show()
         // Se resta el peso del objeto a la capacidad de la mochila del jugador
         jugador.sumPeso += objeto.peso
 
