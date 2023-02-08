@@ -1,5 +1,6 @@
 package com.example.ejercicio11
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ejercicio11.databinding.ActivityObjetoBinding
 
 class ObjetoActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityObjetoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //cada vez que abramos la actividad, se pondrá un objeto aleatorio del arraay en el imageView
-
 
         var jugador = Jugador("", "", "")
         //recoger el objeto jugador que se ha pasado por el intent
@@ -33,50 +32,66 @@ class ObjetoActivity : AppCompatActivity() {
 
 
 
-            //generar un número aleatorio entre 0 y 6
-            var random_elegido = (0..6).random()
+        //crear un hasmap para poder asignarle un nombre a cada imagen
+        val mapaObjetos = mutableMapOf<Int, String>()
+        mapaObjetos[R.drawable.arma] = "Arma"
+        mapaObjetos[R.drawable.armadura] = "Armadura"
+        mapaObjetos[R.drawable.armadura_oro] = "Armadura de oro"
+        mapaObjetos[R.drawable.espada_diamante] = "Espada de Diamante"
+        mapaObjetos[R.drawable.lanza] = "Lanza"
+        mapaObjetos[R.drawable.pocion] = "Poción"
+        mapaObjetos[R.drawable.talisman] = "Talismán"
 
-            //crear un hasmap para poder asignarle un nombre a cada imagen
-            val mapaObjetos = mutableMapOf<Int, String>()
-            mapaObjetos[R.drawable.arma] = "Arma"
-            mapaObjetos[R.drawable.armadura] = "Armadura"
-            mapaObjetos[R.drawable.armadura_oro] = "Armadura de oro"
-            mapaObjetos[R.drawable.espada_diamante] = "Espada de Diamante"
-            mapaObjetos[R.drawable.lanza] = "Lanza"
-            mapaObjetos[R.drawable.pocion] = "Poción"
-            mapaObjetos[R.drawable.talisman] = "Talismán"
-
-            //asignar el objeto aleatorio a la imagen
-            binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
-            //asignar el nombre del objeto a la variable nombreObjeto
-            binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
-            //ver capacidad restante de la mochila
-
-            var sumpeso = 100-jugador.sumPeso
-            binding.CapacidadMochila.text = "     " + sumpeso.toString() + "/" + 100
-
-            binding.BtnRecoger.setOnClickListener {
-                //Creamos el objeto que se va a recoger
-                val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
-
-                //recogemos el objeto
-                jugador = recoger(jugador, objetoSeleccionado, this)
-
-                //eliminamos el objeto de la lista de objetos
-                mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
-
-                //Actualizamos
-                var sumpeso = 100-jugador.sumPeso
-                binding.CapacidadMochila.text = "     " + sumpeso.toString() + "/" + 100
+        //generar un número aleatorio entre 0 y 6
+        var random_elegido = (0..mapaObjetos.size).random()
+        //asignar el objeto aleatorio a la imagen
+        binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
+        //asignar el nombre del objeto a la variable Objeto
+        binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
+        //ver capacidad restante de la mochila
+        val sumpeso = 100 - jugador.sumPeso
+        binding.CapacidadMochila.text = "     $sumpeso/100"
 
 
+        binding.BtnRecoger.setOnClickListener {
+
+            //Creamos el objeto que se va a recoger
+            val objetoSeleccionado = Objeto(mapaObjetos.values.elementAt(random_elegido))
+
+            //recogemos el objeto
+            jugador = recoger(jugador, objetoSeleccionado, this)
+
+            //eliminamos el objeto de la lista de objetos
+            mapaObjetos.remove(mapaObjetos.keys.elementAt(random_elegido))
+
+            //Actualizamos
+            var sumpeso = 100 - jugador.sumPeso
+            binding.CapacidadMochila.text = "     $sumpeso/100"
+
+
+            //repetimos codigo para generar un objeto cada vez que se pulsa el botón recoger, hasta que no queden objetos en la lista o se llene la mochila
+
+            //si no quedan objetos en la lista, se deshabilita el botón de recoger
+            if (mapaObjetos.isEmpty()) {
+                binding.BtnRecoger.isEnabled = false
+            } else{
+                random_elegido = (0 until mapaObjetos.size).random()
+                binding.imagenObjeto.setImageResource(mapaObjetos.keys.elementAt(random_elegido))
+                binding.Objeto.text = mapaObjetos.values.elementAt(random_elegido)
+                sumpeso = 100 - jugador.sumPeso
+                binding.CapacidadMochila.text = "     $sumpeso/100"
             }
+
+        }
 
         //si pulsas el botón Continuar se vuelve a la actividad dado
         binding.BtnContinuar.setOnClickListener {
-            binding.BtnContinuar.isPressed = true
-            val intent = Intent(this, DadoActivity::class.java)
-            intent.putExtra("jugador", jugador)
+            //utilizar un bundle para pasar el objeto jugador a la siguiente actividad
+
+            val bundle = Bundle()
+            bundle.putSerializable("jugador", jugador)
+            val intent = Intent(this, BlancaActivity::class.java)
+            intent.putExtras(bundle)
             startActivity(intent)
         }
     }
@@ -102,12 +117,14 @@ fun recoger(
     if (jugador.tamanyoMochila < objeto.peso) {
         //si no cabe, se lanza un toast con el mensaje de que no cabe
         Toast.makeText(contexto, "No cabe en la mochila", Toast.LENGTH_LONG).show()
-    } else if (jugador.tamanyoMochila >= objeto.peso) {
+
+    } else
+        {
         //si cabe, se añade el objeto a la mochila
         jugador.mochila.add(objeto)
-        Toast.makeText(contexto, "Has recogido ${objeto}", Toast.LENGTH_LONG).show()
+        Toast.makeText(contexto, "Has recogido $objeto", Toast.LENGTH_LONG).show()
         // Se resta el peso del objeto a la capacidad de la mochila del jugador
-        jugador.sumPeso+=objeto.peso
+        jugador.sumPeso += objeto.peso
 
     }
 
