@@ -11,27 +11,25 @@ class EnemigoActivity : AppCompatActivity() {
         val binding = ActivityEnemigoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var jugador = Jugador("", "", "")
-        //recoger el objeto jugador que se ha pasado por el intent
-        val jugadorRecibido = intent.getSerializableExtra("jugador") as Jugador
 
-        //asignar los valores del jugador recibido al jugador de esta actividad
-        jugador.raza = jugadorRecibido.raza
-        jugador.nombre = jugadorRecibido.nombre
-        jugador.clase = jugadorRecibido.clase
-        jugador.mochila = jugadorRecibido.mochila
-        jugador.monedero = jugadorRecibido.monedero
-        jugador.defensa = jugadorRecibido.defensa
-        jugador.tamanyoMochila = jugadorRecibido.tamanyoMochila
-        jugador.vida = jugadorRecibido.vida
-        jugador.fuerza = jugadorRecibido.fuerza
+        val jugador = intent.getSerializableExtra("jugador") as Jugador
 
-
-        //si pulsas el botón Luchar se continua a la actividad blanca
-        //si pulsas el botón Huir se vuelve a la actividad dado
+        //crear un random entre 0 y 9
+        val random_elegido = (0..9).random()
+        if (random_elegido < 5) {
+            binding.imagenObjeto.setImageResource(R.drawable.enemigo1)
+            binding.Enemigo.text = "Enemigo"
+            binding.progressBar.progress=100
+        } else {
+            binding.imagenObjeto.setImageResource(R.drawable.enemigo2)
+            binding.Enemigo.text = "Enemigo Jefazo"
+            binding.progressBar.progress=200
+        }
 
         binding.BtnLuchar.setOnClickListener {
-            val intent = Intent(this, BlancaActivity::class.java)
+            val intent = Intent(this, Enemigo2Activity::class.java)
+            intent.putExtra("jugador", jugador)
+            intent.putExtra("random_elegido", random_elegido)
             startActivity(intent)
         }
         binding.BtnHuir.setOnClickListener {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnemigoActivity">
+    tools:context=".Enemigo2Activity">
 
 
     <TableLayout
@@ -38,7 +38,7 @@
 
 
             <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBar_Enemigo"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 android:layout_marginTop="5dp"
@@ -85,53 +85,78 @@
                 android:textSize="20sp" />
 
         </TableRow>
+        <TableRow
+            android:layout_marginTop="100dp">
+
+
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar_Jugador"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:visibility="visible" />
+
+
+        </TableRow>
+
 
         <TableRow
             android:layout_height="291dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="0dp"
             tools:layout_editor_absoluteX="12dp"
             tools:layout_editor_absoluteY="116dp">
 
 
-            <Button
-                android:id="@+id/BtnLuchar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:fontFamily="times"
-                android:text="LUCHAR"
-                android:textSize="20sp"
-                android:gravity="center"/>
+          <Button
+            android:id="@+id/BtnAtacar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_span="1"
+            android:layout_weight="0"
+            android:fontFamily="times"
+            android:gravity="center"
+            android:text="Atacar"
+            android:textSize="20sp" />
 
             <Button
-                android:id="@+id/BtnHuir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:fontFamily="times"
-                android:text="HUIR"
-                android:textSize="20sp"
-                android:gravity="center"/>
+            android:id="@+id/BtnHuir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_span="1"
+            android:layout_weight="0"
+            android:fontFamily="times"
+            android:gravity="center"
+            android:text="Huir"
+                android:layout_marginEnd="10dp"
+            android:textSize="20sp" />
+
+            <Button
+            android:id="@+id/ConsumirObjeto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_span="1"
+            android:layout_weight="0"
+            android:fontFamily="times"
+            android:gravity="center"
+            android:text="Consumir \nObjeto"
+                android:layout_marginEnd="20dp"
+            android:textSize="20sp" />
 
         </TableRow>
     </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ class Jugador(
     var defensa: Int = (1..5).random()
     var fuerza: Int = (10..15).random()
     var vida: Int = 200
-
+    var vida_max = 200
     var tamanyoMochila: Int = 100
     lateinit var mochila: MutableList<Objeto>
     var sumPeso = 0
