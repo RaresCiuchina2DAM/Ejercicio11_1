@@ -114,16 +114,19 @@ class MercaderActivity : AppCompatActivity() {
 
             //cuando se pulse el boton de vender se realizaran los mismos pasos que en la parte del boton comprar pero se redirigirá a la mochila
 
-            binding.BtnVender.setOnClickListener{
+            binding.BtnVender.setOnClickListener {
 
                 binding.BotonesMasMenos.visibility = View.VISIBLE
                 var cantidad = 0
                 binding.NumeroVeces.text = cantidad.toString()
+
+
                 binding.BtnMas.setOnClickListener {
                     //Aumentamos el valor de la variable cantidad
                     cantidad++
                     binding.NumeroVeces.text = cantidad.toString()
                 }
+
 
                 binding.BtnMenos.setOnClickListener {
                     if (cantidad > 0) {
@@ -139,6 +142,7 @@ class MercaderActivity : AppCompatActivity() {
                     binding.NumeroVeces.text = cantidad.toString()
                 }
 
+
                 binding.BtnVender.text = "CONFIRMAR VENTA"
 
                 binding.BtnVender.setOnClickListener {
@@ -153,47 +157,63 @@ class MercaderActivity : AppCompatActivity() {
                             "No puedes vender 0 objetos",
                             Toast.LENGTH_SHORT
                         ).show()
-                    } else if (monederoToInt(jugador.monedero) >= objetoSeleccionado.valor * cantidad) {
-                        if (jugador.tamanyoMochila >= objetoSeleccionado.peso) {
-                            jugador.monedero =
-                                IntToMonedero(monederoToInt(jugador.monedero) - objetoSeleccionado.valor * cantidad)
-                            jugador.mochila.add(objetoSeleccionado)
+                    } else if (jugador.mochila.isEmpty()) {
+                        Toast.makeText(
+                            this,
+                            "No tienes objetos en la mochila",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+                        var objetosEnLaMochila = jugador.mochila.count()
+                        //crear hasmap con los objetos de la mochila y su valor
+
+                        var mapaObjetosMochila = HashMap<String, Int>()
+                        for (i in 0 until objetosEnLaMochila) {
+                            mapaObjetosMochila.put(
+                                jugador.mochila[i].nombre,
+                                jugador.mochila[i].valor
+                            )
+                        }
+                        //recoger el valor de los objetos del mapa y sumarlo en una variable SumaValorMochila
+                        var sumaValorMochila = 0
+                        for (i in 0 until objetosEnLaMochila) {
+                            sumaValorMochila += mapaObjetosMochila.values.elementAt(i)
+                        }
+                        if (cantidad <= objetosEnLaMochila) {
+                            jugador.monedero += IntToMonedero(monederoToInt(jugador.monedero) + sumaValorMochila * cantidad)
+                            for (i in 0 until cantidad) {
+                                jugador.mochila.removeAt(i)
+                            }
                             Toast.makeText(
                                 this,
-                                "Has vendido $cantidad : $objetoSeleccionado.nombre",
+                                "Has vendido un total de $cantidad , con un valor total de $sumaValorMochila",
                                 Toast.LENGTH_SHORT
                             ).show()
                             binding.BtnVender.text = "VENDER"
                         } else
                             Toast.makeText(
                                 this,
-                                "No tienes espacio en la mochila",
+                                "No tienes suficientes objetos en la mochila",
                                 Toast.LENGTH_SHORT
                             ).show()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "No tienes suficiente dinero en el monedero",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-
                 }
 
 
+                binding.BtnCancelar.setOnClickListener {
+                    binding.BotonesMasMenos.visibility = View.INVISIBLE
+                    binding.BotonesComerciaryContinuar.visibility = View.VISIBLE
+                    binding.BotonesComprarVender.visibility = View.INVISIBLE
+                    binding.BtnVender.text = "VENDER"
+                    binding.BtnVender.isEnabled = true
+                    binding.BtnComprar.text = "COMPRAR"
+                    binding.BtnVender.isEnabled = true
 
-
-
-            }
-            binding.BtnCancelar.setOnClickListener {
-                binding.BtnCancelar.isPressed = true
-                binding.BotonesComerciaryContinuar.visibility = View.VISIBLE
-                binding.BotonesComprarVender.visibility = View.INVISIBLE
-                binding.BotonesMasMenos.visibility = View.INVISIBLE
+                }
             }
         }
     }
 }
-
 
 
