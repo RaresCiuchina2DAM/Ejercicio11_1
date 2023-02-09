@@ -55,6 +55,7 @@
         <!--        CREAR DOS BOTONES(UNO MÁS(A LA DERECHA) Y OTRO MENOS(A LA IZQUIERDA) Y UN TEXT VIEW DEL NUMERO EN EL CENTRO-->
 
         <TableRow
+            android:id="@+id/BotonesMasMenos"
             android:layout_height="291dp"
             android:layout_marginTop="10dp"
             tools:layout_editor_absoluteX="12dp"

@@ -129,6 +129,7 @@ fun recoger(
         {
         //si cabe, se añade el objeto a la mochila
         jugador.mochila.add(objeto)
+        jugador.monedero += IntToMonedero(objeto.valor)
         Toast.makeText(contexto, "Has recogido $objeto", Toast.LENGTH_SHORT).show()
         // Se resta el peso del objeto a la capacidad de la mochila del jugador
         jugador.sumPeso += objeto.peso

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejercicio11.databinding.EligerazaActividad2Binding
-import com.google.gson.Gson
 
 
 class EligerazaActivity : AppCompatActivity() {
@@ -16,11 +15,6 @@ class EligerazaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val jugador = Jugador("","","")
-        jugador.monedero.put(1, 0)
-        jugador.monedero.put(5, 0)
-        jugador.monedero.put(10, 0)
-        jugador.monedero.put(25, 0)
-        jugador.monedero.put(100,0)
 
         binding.imageView.setImageResource(R.drawable.inicio)
 
