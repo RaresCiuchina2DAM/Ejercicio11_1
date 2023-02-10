@@ -22,29 +22,29 @@ class DadoActivity : AppCompatActivity() {
         //Al pulsar el dado se ejecutará una función aleatoria que devolverá un número del 1 al 4
 
         binding.btonDado.setOnClickListener {
-            val numero = (1..3).random()
+            val numero = 2
             val uno = Intent(this, ObjetoActivity::class.java)
-//            val dos = Intent(this, CiudadActivity::class.java)
+            val dos = Intent(this, CiudadActivity::class.java)
             val tres = Intent(this, MercaderActivity::class.java)
             val cuatro = Intent(this, EnemigoActivity::class.java)
 
             when (numero) {
-                1 -> {
-                    uno.putExtra("jugador", jugador)
-                    startActivity(uno)
-                }
-//                2 -> {
-//                    dos.putExtra("jugador", jugador)
-//                    startActivity(dos)
+//                1 -> {
+//                    uno.putExtra("jugador", jugador)
+//                    startActivity(uno)
 //                }
                 2 -> {
-                    tres.putExtra("jugador", jugador)
-                    startActivity(tres)
+                    dos.putExtra("jugador", jugador)
+                    startActivity(dos)
                 }
-                3 -> {
-                    cuatro.putExtra("jugador", jugador)
-                    startActivity(cuatro)
-                }
+//                3 -> {
+//                    tres.putExtra("jugador", jugador)
+//                    startActivity(tres)
+//                }
+//                4 -> {
+//                    cuatro.putExtra("jugador", jugador)
+//                    startActivity(cuatro)
+//                }
 
             }
         }

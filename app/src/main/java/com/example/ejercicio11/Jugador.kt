@@ -18,7 +18,7 @@ class Jugador(
     lateinit var mochila: MutableList<Objeto>
     var sumPeso = 0
     var sumValor = 0
-
+    var partidasGanadasEnCiudad = 0
     init {
         this.monedero[1] = 0
         this.monedero[5] = 0

@@ -16,11 +16,12 @@ class CiudadActivity : AppCompatActivity() {
         val jugador = intent.getSerializableExtra("jugador") as Jugador
 
 
+
         //si pulsas el botón Entrar se continua a la actividad blanca
         //si pulsas el botón Continuar se vuelve a la actividad dado
 
         binding.BtnEntrarCiudad.setOnClickListener {
-            val intent = Intent(this, BlancaActivity::class.java)
+            val intent = Intent(this, CiudadaleatorizadaActivity::class.java)
             startActivity(intent)
         }
 

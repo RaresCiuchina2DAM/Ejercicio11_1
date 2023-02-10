@@ -16,11 +16,7 @@ class Enemigo2Activity : AppCompatActivity() {
         val random = intent.getIntExtra("random", 0)
 
 
-        Toast.makeText(
-            this,
-            "${jugador.nombre} !! \n Has encontrado un enemigo",
-            Toast.LENGTH_SHORT
-        ).show()
+
 
         var vidaEnemigo = 0
         if (random <= 4) {
@@ -61,9 +57,20 @@ class Enemigo2Activity : AppCompatActivity() {
                     jugador.mochila.add(Objeto("Pocion de vida"))
                     jugador.mochila.add(Objeto("Pocion de fuerra"))
                     jugador.mochila.add(Objeto("Pocion de defensa"))
-                    val intent = Intent(this, DadoActivity::class.java)
-                    intent.putExtra("jugador", jugador)
-                    startActivity(intent)
+
+                    jugador.partidasGanadasEnCiudad += 1
+
+                    //si el intent de donde viene es de la ciudad, se vuelve a la ciudad
+                    if (intent.getStringExtra("ciudad") == "ciudad") {
+                        val intent = Intent(this, CiudadaleatorizadaActivity::class.java)
+                        intent.putExtra("jugador", jugador)
+                        startActivity(intent)
+                    } else {
+                        val intent = Intent(this, DadoActivity::class.java)
+                        intent.putExtra("jugador", jugador)
+                        startActivity(intent)
+                    }
+
                 }
                 Toast.makeText(this, "DALE!! Has atacado", Toast.LENGTH_SHORT).show()
 

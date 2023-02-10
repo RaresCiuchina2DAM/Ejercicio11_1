@@ -89,13 +89,19 @@ class ObjetoActivity : AppCompatActivity() {
 
         }
 
-        //si pulsas el botón Continuar se vuelve a la actividad dado
-        binding.BtnContinuar.setOnClickListener {
-            //utilizar un bundle para pasar el objeto jugador a la siguiente actividad
 
-            val intent = Intent(this, DadoActivity::class.java)
-            intent.putExtra("jugador", jugador)
-            startActivity(intent)
+        binding.BtnContinuar.setOnClickListener {
+
+            //si el intent de donde viene es de la ciudad, se vuelve a la ciudad
+            if (intent.getStringExtra("ciudad") == "ciudad") {
+                val intent = Intent(this, CiudadaleatorizadaActivity::class.java)
+                intent.putExtra("jugador", jugador)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, DadoActivity::class.java)
+                intent.putExtra("jugador", jugador)
+                startActivity(intent)
+            }
 
         }
     }

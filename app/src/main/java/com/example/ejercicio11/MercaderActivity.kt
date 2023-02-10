@@ -215,9 +215,16 @@ class MercaderActivity : AppCompatActivity() {
             }
         }
         binding.BtnContinuar.setOnClickListener {
-           val intent = Intent(this, DadoActivity::class.java)
-            intent.putExtra("jugador", jugador)
-            startActivity(intent)
+            //si el intent de donde viene es de la ciudad, se vuelve a la ciudad
+            if (intent.getStringExtra("ciudad") == "ciudad") {
+                val intent = Intent(this, CiudadActivity::class.java)
+                intent.putExtra("jugador", jugador)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, DadoActivity::class.java)
+                intent.putExtra("jugador", jugador)
+                startActivity(intent)
+            }
 
 
 
