@@ -36,15 +36,19 @@
         <TableRow>
 
 
-
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/progressBar_Enemigo"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_span="1"
                 android:layout_weight="1"
+                android:max="200"
+                android:progress="200"
+                android:progressTint="#FF0000"
                 android:visibility="visible" />
 
 
@@ -86,19 +90,43 @@
 
         </TableRow>
         <TableRow
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="50dp">
 
+            <TextView
+                android:id="@+id/NombreJugador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text=""
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
 
             <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progressBar_Jugador"
+                android:id="@+id/progressBar_jugador"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_span="1"
                 android:layout_weight="1"
-                android:visibility="visible" />
+                android:indeterminate="false"
+                android:max="200"
+                android:progress="200"
+                android:progressTint="#FF0000"
+                android:visibility="visible"/>
 
 
         </TableRow>

@@ -37,15 +37,22 @@
 
 
 
-            <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_span="1"
-                android:layout_weight="1"
-                android:visibility="visible" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progressBar_Enemigo"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:max="200"
+                    android:progress="200"
+                    android:progressTint="#FF0000"
+                    android:visibility="visible" />
+
 
 
         </TableRow>
