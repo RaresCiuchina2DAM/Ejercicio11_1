@@ -114,6 +114,7 @@ class Enemigo2Activity : AppCompatActivity() {
             if (jugador.mochila.size > 0) {
                 if (jugador.vida < jugador.vida_max) {
                     jugador.vida += jugador.mochila[0].vida
+                    binding.progressBarJugador.progress = jugador.vida
                     jugador.mochila.removeAt(0)
                     Toast.makeText(this, "Has consumido un objeto", Toast.LENGTH_SHORT)
                         .show()

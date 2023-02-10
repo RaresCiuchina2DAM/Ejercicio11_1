@@ -1,6 +1,7 @@
 package com.example.ejercicio11
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -115,7 +116,7 @@ class MercaderActivity : AppCompatActivity() {
             //cuando se pulse el boton de vender se realizaran los mismos pasos que en la parte del boton comprar pero se redirigirá a la mochila
 
             binding.BtnVender.setOnClickListener {
-
+                binding.imagenObjeto.visibility = View.INVISIBLE
                 binding.BotonesMasMenos.visibility = View.VISIBLE
                 var cantidad = 0
                 binding.NumeroVeces.text = cantidad.toString()
@@ -212,6 +213,14 @@ class MercaderActivity : AppCompatActivity() {
 
                 }
             }
+        }
+        binding.BtnContinuar.setOnClickListener {
+           val intent = Intent(this, DadoActivity::class.java)
+            intent.putExtra("jugador", jugador)
+            startActivity(intent)
+
+
+
         }
     }
 }

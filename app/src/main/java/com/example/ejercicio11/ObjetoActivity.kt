@@ -3,7 +3,6 @@ package com.example.ejercicio11
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Binder
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -88,15 +87,13 @@ class ObjetoActivity : AppCompatActivity() {
 
             }
 
-
-
         }
 
         //si pulsas el botón Continuar se vuelve a la actividad dado
         binding.BtnContinuar.setOnClickListener {
             //utilizar un bundle para pasar el objeto jugador a la siguiente actividad
 
-            val intent = Intent(this, BlancaActivity::class.java)
+            val intent = Intent(this, DadoActivity::class.java)
             intent.putExtra("jugador", jugador)
             startActivity(intent)
 
