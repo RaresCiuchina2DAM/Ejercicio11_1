@@ -1,6 +1,6 @@
 package com.example.ejercicio11
 
-import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -31,9 +31,10 @@ class DialogFlow : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         val binding = ActivityDialogFlowBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        super.onCreate(savedInstanceState)
+
 
         //recoger el objeto jugador que se ha pasado por el intent
         val jugador = intent.getSerializableExtra("jugador") as Jugador
@@ -41,20 +42,17 @@ class DialogFlow : AppCompatActivity() {
 
         binding.scrollChat.post {
             binding.scrollChat.fullScroll(binding.scrollChat.FOCUS_DOWN)
-
         }
 
-        //caja para escribir los mensajes
         binding.cajadetexto.setOnKeyListener { view, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN) {
-                when (keyCode) {
+            if(event.action == KeyEvent.ACTION_DOWN){
+                when(keyCode){
                     KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-
-                        // Llamamos al método enviarMensaje() el cual crearemos más adelante
-                        enviarMensaje(enviar)
+                        enviarMensaje(view)
                         true
                     }
                     else -> {
+
                     }
                 }
             }
@@ -71,42 +69,37 @@ class DialogFlow : AppCompatActivity() {
         iniciarAsistenteVoz()
     }
 
-    // Función para iniciar el asistente
+    // Función inicarAsistente
     private fun iniciarAsistente() {
         try {
-            //Este es el archivo de configuracion de la cuenta de DialogFlow
+            // Archivo JSON de configuración de la cuenta de Dialogflow (Google Cloud Platform)
             val config = resources.openRawResource(R.raw.credenciales)
-            //Aqui leeremos las credenciales
+
+            // Leemos las credenciales de la cuenta de Dialogflow (Google Cloud Platform)
             val credenciales = GoogleCredentials.fromStream(config)
-            //Aqui leemos el projectId que se encuentra en el archivo de las credenciales
+
+            // Leemos el 'projectId' el cual se encuentra en el archivo 'credenciales.json'
             val projectId = (credenciales as ServiceAccountCredentials).projectId
-            //Aqui construimos una configuracion para acceder al servicio de DialogFlow
+
+            // Construimos una configuración para acceder al servicio de Dialogflow (Google Cloud Platform)
             val generarConfiguracion = SessionsSettings.newBuilder()
 
-            //Aqui configuramos las sesiones que vamos a usar en nuestra app
-            val configuracionDeLasSesiones =
-                generarConfiguracion.setCredentialsProvider(
-                    (FixedCredentialsProvider.create(
-                        credenciales
-                    ))
-                ).build()
-
-            cliente = SessionsClient.create(configuracionDeLasSesiones)
+            // Configuramos las sesiones que usaremos en la aplicación
+            val configurarSesiones =
+                generarConfiguracion.setCredentialsProvider(FixedCredentialsProvider.create(credenciales)).build()
+            cliente = SessionsClient.create(configurarSesiones)
             sesion = SessionName.of(projectId, uuid)
 
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-
     }
 
-    /**
-     * Función para Iniciar el asistente de voz
-     */
+    // Función iniciarAsistenteVoz
     private fun iniciarAsistenteVoz() {
-        asistentevoz = TextToSpeech(
-            applicationContext
+
+        asistentevoz = TextToSpeech(applicationContext
         ) { status ->
             if (status != TextToSpeech.ERROR) {
                 asistentevoz?.language = Locale("es")
@@ -115,87 +108,90 @@ class DialogFlow : AppCompatActivity() {
 
     }
 
-    /**
-     * Función para enviar el mensaje al bot
-     * @param view Es la vista que se le pasa al método
-     */
-
     private fun enviarMensaje(view: View) {
+        val cajadetexto = findViewById<EditText>(R.id.cajadetexto)
+        // Obtenemos el mensaje de la caja de texto y lo pasamos a String
+        val mensaje = cajadetexto.text.toString()
 
-        //obtenemos el binding de la vista y lo guardamos en una variable
-        val binding = ActivityDialogFlowBinding.inflate(layoutInflater)
-        //recoger de la vista view el texto que se ha escrito en la caja de texto
-        val mensaje = binding.cajadetexto.text.toString()
-
-        //si el usuario no ha escrito nada, y presio
+        // Si el usuario no ha escrito un mensaje en la caja de texto y presiona el botón enviar, le mostramos
+        // un Toast con un mensaje 'Ingresa tu mensaje ...'
         if (mensaje.trim { it <= ' ' }.isEmpty()) {
-            Toast.makeText(this, "No has escrito nada", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DialogFlow, getString(R.string.placeholder), Toast.LENGTH_LONG).show()
         }
-        //si el usuario ha escrito algo, llamamos al metodo agregar texto
+
+        // Si el usuario agrego un mensaje a la caja de texto, llamamos al método agregarTexto()
         else {
             agregarTexto(mensaje, USUARIO)
-            //limpiamos la caja de texto
-            binding.cajadetexto.setText("")
-            //Enviamos la consulta al bot
-            val enviarConsulta = QueryInput.newBuilder().setText(
-                TextInput.newBuilder().setText(mensaje).setLanguageCode("es")
-            ).build()
-            solicitarTarea(this, sesion!!, cliente!!, enviarConsulta)
+            cajadetexto.setText("")
 
+            // Enviamos la consulta del usuario al Bot
+            val ingresarConsulta =
+                QueryInput.newBuilder().setText(TextInput.newBuilder().setText(mensaje).setLanguageCode("es")).build()
+            solicitarTarea(this@DialogFlow, sesion!!, cliente!!, ingresarConsulta).execute()
         }
-
-
     }
 
-    private fun enviarMensajeMicrofono(view: View) {
+    private fun enviarMensajeMicrofono(view:View){
 
-        //Intentamos reconocer la voz del usuario
+        // Llamamos al intento para reconocer voz del usuario y convertirla a texto
         val intento = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
-        //Definimos los modelos de reconocimiento de voz
+        // Definimos los modelos de reconocimiento de voz
         intento.putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,
             RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
         )
 
-        //Le diremos qe haga el reconocimiento de voz en el idioma local de la app
+        // Le decimos que haga el reconocimiento de voz en el idioma local 'Locale.getDefault()'
         intento.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
 
-        //Si el usuario no habla, le diremos que hable
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Habla ahora")
+        // Si el usuario no habla algo, le mostramos el mensaje 'Di algo en el micrófono ...'
+        intento.putExtra(
+            RecognizerIntent.EXTRA_PROMPT,
+            getString(R.string.mensajedevoz)
+        )
 
-        //Cuando chequeamos to do esto, enviamos el audio al bot
+        // Si todo va bien, enviamos el audio del usuario al Bot
         try {
             startActivityForResult(intento, ENTRADA_DE_VOZ)
-            // Si no se puede reconocer la voz, mostramos un mensaje de error
-        } catch (e: Exception) {
-            Toast.makeText(this, "Este mensaje de voz, no es admitido", Toast.LENGTH_SHORT).show()
         }
+
+        // Si el dispositivo del usuario no es compatible con la función del micrófono
+        // Le mostramos el mensaje 'Tu teléfono no es compatible con la función de micrófono ...'
+        // en un Toast
+        catch (a: ActivityNotFoundException) {
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.mensajedevoznoadmitido),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
     }
 
-    /**
-     * Función para agregar el texto al chat
-     * @param mensaje Es el mensaje que se le pasa al método
-     * @param tipo Es el tipo de mensaje que se le pasa al método
-     */
     private fun agregarTexto(mensaje: String, type: Int) {
 
+        // Coloco el FramLayout dentro de la variable layoutFrm
+        val layoutFrm: FrameLayout
 
-        //Colocamos el FrameLayout en la variable Fram
-        var fram = FrameLayout(this)
-        when (type){
-            USUARIO->fram = agregarTextoUsuario()
-            BOT->fram = agregarTextoBot()
-            else->fram = agregarTextoBot()
+        // Según sea el rol, le cargamos el FrameLayout y llamamos a un método respectivo
+        // Los métodos agregarTextoUsuario() y agregarTextoBot() los crearé más adelante
+        when (type) {
+            USUARIO -> layoutFrm = agregarTextoUsuario()
+            BOT -> layoutFrm = agregarTextoBot()
+            else -> layoutFrm = agregarTextoBot()
         }
-        //si el usuario hace clic en la caja de texto
-        fram.isFocusableInTouchMode = true
-        //paamos el linear layout
-        binding.linearChat.addView(fram)
+
+        // Si el usuario hace clic en la caja de texto
+        layoutFrm.isFocusableInTouchMode = true
+
+        val linear_chat = findViewById<LinearLayout>(R.id.linear_chat)
+        // Pasamos un LinearLayout
+        linear_chat.addView(layoutFrm)
 
         // Mostramos los textos de los mensajes en un TextView
-        val textview = fram.findViewById<TextView>(R.id.msg_chat)
-        textview.text(mensaje)
+        val textview: TextView = layoutFrm.findViewById(R.id.msg_chat)
+        textview.text = mensaje
 
 
         // Si el usuario sale del modo escritura, ocultamos el teclado del dispositivo
@@ -203,18 +199,20 @@ class DialogFlow : AppCompatActivity() {
         configTeclado.ocultarTeclado(this)
 
         // Enfocamos el TextView Automáticamente
-        fram.requestFocus()
+        layoutFrm.requestFocus()
+
 
         // Volvemos a cambiar el enfoque para editar el texto y continuar escribiendo
-        binding.cajadetexto.requestFocus()
+        val cajadetexto = findViewById<EditText>(R.id.cajadetexto)
+        cajadetexto.requestFocus()
 
         // Si es un cliente el que envía un mensaje al Bot, cargamos el método 'TexToSpeech'
         // 'TexToSpeech' junto a otras métodos procesa los mensajes de voz que seran enviados al Bot
-        if(type!= USUARIO) asistentevoz?.speak(mensaje,TextToSpeech.QUEUE_FLUSH,null,)
+        if(type!= USUARIO) asistentevoz?.speak(mensaje,TextToSpeech.QUEUE_FLUSH,null)
+
     }
 
     // Colocamos los mensajes del Usuario en el layout 'mensaje_usuario'
-
     fun agregarTextoUsuario(): FrameLayout {
         val inflater = LayoutInflater.from(this@DialogFlow)
         return inflater.inflate(R.layout.mensaje_usuario, null) as FrameLayout
@@ -250,6 +248,39 @@ class DialogFlow : AppCompatActivity() {
         }catch (e:Exception){
             // Mostramos al usuario el texto 'Por Favor, ingresa un mensaje'
             agregarTexto(getString(R.string.ingresa_mensaje), BOT)
+        }
+    }
+
+    override fun onActivityResult(codigoSolicitud: Int, codigoResultado: Int, datos: Intent?) {
+        super.onActivityResult(codigoSolicitud, codigoResultado, datos)
+
+        // Obtenemos el resultado de nuestra actividad principal
+        // Si la variable codigoResultado esta ok y la variable datos no es null
+        when(codigoSolicitud){
+            ENTRADA_DE_VOZ->{
+                if(codigoResultado == Activity.RESULT_OK
+                    && datos != null){
+
+                    // getStringArrayListExtra recupera datos extendidos del Intent
+                    val resultado = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+
+                    // El usuario puede agregar otro mensaje
+                    cajadetexto.text = Editable.Factory.getInstance().newEditable(resultado[0])
+
+                    // El usuario puede hacer uso del micrófono
+                    enviarMensaje(microfono)
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Si la aplicación es cerrada, detenemos el asistente de voz
+        if(asistente_voz !=null){
+            asistente_voz?.stop()
+            asistente_voz?.shutdown()
         }
     }
 
