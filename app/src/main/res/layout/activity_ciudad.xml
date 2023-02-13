@@ -16,9 +16,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TableRow>
+
+            <TextView
+                android:id="@+id/DondeEstoy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_span="1"
+                android:layout_weight="1"
+                android:fontFamily="times"
+                android:gravity="center"
+                android:text="¡ MENUDA CIUDAD !"
+
+                android:textSize="20sp" />
+
+        </TableRow>
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/imagenObjeto"
+                android:layout_width="match_parent"
+                android:layout_height="465dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_span="2"
+                android:layout_weight="1"
+                android:src="@drawable/ciudad_madrid"
+
+
+                />
+
+        </TableRow>
+
+
         <TableRow
             android:layout_height="291dp"
-            android:layout_marginTop="650dp"
+            android:layout_marginTop="100dp"
             tools:layout_editor_absoluteX="12dp"
             tools:layout_editor_absoluteY="116dp">
 

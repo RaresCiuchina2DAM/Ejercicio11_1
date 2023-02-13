@@ -16,4 +16,7 @@
     <string name="Asignar">Asignar</string>
     <string name="entrar">ENTRAR</string>
     <string name="Continuar">CONTINUAR</string>
+    <string name="placeholder">Ingresa tu mensaje</string>
+    <string name="audio_no_se_entiende">El audio que me has enviado es innaudible o no se entiende</string>
+    <string name="ingresa_mensaje">Por favor, ingresa un mensaje</string>
 </resources>

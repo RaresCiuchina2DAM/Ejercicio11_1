@@ -22,6 +22,7 @@ class CiudadActivity : AppCompatActivity() {
 
         binding.BtnEntrarCiudad.setOnClickListener {
             val intent = Intent(this, CiudadaleatorizadaActivity::class.java)
+            intent.putExtra("jugador", jugador)
             startActivity(intent)
         }
 

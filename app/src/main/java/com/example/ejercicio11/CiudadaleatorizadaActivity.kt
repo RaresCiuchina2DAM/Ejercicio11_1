@@ -14,38 +14,45 @@ class CiudadaleatorizadaActivity : AppCompatActivity() {
         //recoger el objeto jugador que se ha pasado por el intent
         val jugador = intent.getSerializableExtra("jugador") as Jugador
 
-        /*
-        Si se pulsa el botón "Entrar" se aleatorizará la aparición de objetos,
-         mercaderes o enemigos (normales o jefes). Para poder "completar" la ciudad debe
-         haberse luchado con 5 enemigos, independientemente de los otros eventos.
-         */
-        while (jugador.partidasGanadasEnCiudad < 5) {
-            when (aleatorizar(3)) {
-                1 -> {
-                    val intent = Intent(this, ObjetoActivity::class.java)
-                    intent.putExtra("jugador", jugador)
-                    intent.putExtra("ciudad", "ciudad")
-                    startActivity(intent)
-                }
-                2 -> {
-                    val intent = Intent(this, MercaderActivity::class.java)
-                    intent.putExtra("jugador", jugador)
-                    intent.putExtra("ciudad", "ciudad")
-                    startActivity(intent)
-                }
-                3 -> {
-                    val intent = Intent(this, EnemigoActivity::class.java)
-                    intent.putExtra("jugador", jugador)
-                    intent.putExtra("ciudad", "ciudad")
-                    startActivity(intent)
 
+
+
+        binding.BtnLuchar.setOnClickListener {
+            val intent = Intent(this, EnemigoActivity::class.java)
+            intent.putExtra("jugador", jugador)
+
+            while (jugador.partidasGanadasEnCiudad < 5) {
+                when (aleatorizar(3)) {
+                    1 -> {
+                        val intent = Intent(this, ObjetoActivity::class.java)
+                        intent.putExtra("jugador", jugador)
+                        intent.putExtra("ciudad", "ciudad")
+                    }
+                    2 -> {
+                        val intent = Intent(this, MercaderActivity::class.java)
+                        intent.putExtra("jugador", jugador)
+                        intent.putExtra("ciudad", "ciudad")
+                    }
+                    3 -> {
+                        val intent = Intent(this, EnemigoActivity::class.java)
+                        intent.putExtra("jugador", jugador)
+                        intent.putExtra("ciudad", "ciudad")
+
+                    }
                 }
+                startActivity(intent)
             }
+
+        }
+
+        binding.BtnHuir.setOnClickListener {
+            val intent = Intent(this, DadoActivity::class.java)
+            intent.putExtra("jugador", jugador)
+            startActivity(intent)
         }
 
 
     }
-
 
 }
 
