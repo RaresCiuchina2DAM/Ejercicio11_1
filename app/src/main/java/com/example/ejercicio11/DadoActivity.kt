@@ -24,7 +24,7 @@ class DadoActivity : AppCompatActivity() {
         binding.btonDado.setOnClickListener {
             val numero = 2
             val uno = Intent(this, ObjetoActivity::class.java)
-            val dos = Intent(this, CiudadActivity::class.java)
+            val dos = Intent(this, DialogFlowActivity::class.java)
             val tres = Intent(this, MercaderActivity::class.java)
             val cuatro = Intent(this, EnemigoActivity::class.java)
 
