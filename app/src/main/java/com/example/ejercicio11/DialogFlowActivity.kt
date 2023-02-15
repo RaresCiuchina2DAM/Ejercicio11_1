@@ -16,8 +16,6 @@ class DialogFlowActivity : AppCompatActivity() {
         val listaMensajes = ArrayList<String>()
         listaMensajes.add("Hola, soy ${jugador.nombre} y quiero jugar a la ruleta rusa")
         listaMensajes.add("¿Quieres jugar a la ruleta rusa?")
-        listaMensajes.add("¡Vaya, no te gusta jugar a la ruleta rusa!")
-        listaMensajes.add("¡Vale!, ¡Vamos a jugar!")
 
         val adaptador = Adaptador(listaMensajes, jugador)
         binding.recyclerChat.adapter = adaptador
@@ -30,17 +28,31 @@ class DialogFlowActivity : AppCompatActivity() {
         binding.enviar.setOnClickListener {
             listaMensajes.add(binding.cajadetexto.text.toString())
             adaptador.notifyDataSetChanged()
-            binding.cajadetexto.setText("")
-            binding.recyclerChat.scrollToPosition(listaMensajes.size - 1)
-            val respuesta = when ((0..3).random()) {
-                0 -> "Hola, soy ${jugador.nombre} y quiero jugar a la ruleta rusa"
-                1 -> "¿Quieres jugar a la ruleta rusa?"
-                2 -> "¡Vaya, no te gusta jugar a la ruleta rusa!"
-                else -> "¡Vale!, ¡Vamos a jugar!"
+
+            when (binding.cajadetexto.text.toString()) {
+                "si" -> {
+                    val respuesta = "¡Vale!, ¡Vamos a jugar!"
+                    listaMensajes.add(respuesta)
+                    adaptador.notifyDataSetChanged()
+                    binding.cajadetexto.setText("")
+                    binding.recyclerChat.scrollToPosition(listaMensajes.size - 1)
+                }
+                "no" -> {
+                    val respuesta = "¡Vaya, no te gusta jugar a la ruleta rusa!"
+                    listaMensajes.add(respuesta)
+                    adaptador.notifyDataSetChanged()
+                    binding.cajadetexto.setText("")
+                    binding.recyclerChat.scrollToPosition(listaMensajes.size - 1)
+                }
+                else -> {
+                    val respuesta = "No te he entendido"
+                    listaMensajes.add(respuesta)
+                    adaptador.notifyDataSetChanged()
+                    binding.cajadetexto.setText("")
+                    binding.recyclerChat.scrollToPosition(listaMensajes.size - 1)
+                }
             }
-            listaMensajes.add(respuesta)
-            adaptador.notifyDataSetChanged()
-            binding.recyclerChat.scrollToPosition(listaMensajes.size - 1)
+
         }
 
 
