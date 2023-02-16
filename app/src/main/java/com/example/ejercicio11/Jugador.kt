@@ -1,6 +1,7 @@
 package com.example.ejercicio11
 
 import java.io.Serializable
+import java.nio.channels.UnsupportedAddressTypeException
 
 class Jugador(
     var nombre: String,
@@ -19,6 +20,7 @@ class Jugador(
     var sumPeso = 0
     var sumValor = 0
     var partidasGanadasEnCiudad = 0
+    val edad = (12..100).random()
     init {
         this.monedero[1] = 0
         this.monedero[5] = 0

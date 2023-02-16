@@ -2,39 +2,85 @@ package com.example.ejercicio11
 
 import java.util.*
 
-//recoger datos del usuario
 
-
-
-fun comunicacion(respuesta: String, jugador: Jugador): String {
-
-
-    return if (esMayuscula(respuesta)) {
-        "¡${jugador.nombre} dice: ${respuesta.uppercase(Locale.getDefault())}!"
-    } else {
-        "¡${jugador.nombre} dice: ${respuesta.lowercase(Locale.getDefault())}!"
-    }
-}
-
-
-//FUNCIONES DE COMUNICACIÓN
-fun esMayuscula(s: String): Boolean {
+public fun esMayuscula(s: String): Boolean {
     return s == s.uppercase(Locale.getDefault())
 }
 
-//FUNCIONES HABLAR CON EL USUARIO
-fun hablarConJugador(texto: String, jugador: Jugador): String {
+public fun hablarConJugador(texto: String, jugador: Jugador): String {
 
     if (jugador.raza.equals("Humano", true)) {
-        return comunicacion(texto, jugador)
+        return texto
     } else if (jugador.raza.equals("Elfo", true)) {
-        return cifradoCesar(comunicacion(texto, jugador), 13)
+        return cifradoCesar(texto, 13)
     } else if (jugador.raza.equals("Enano", true)) {
-        return comunicacion(texto, jugador).lowercase()
+        return cifradoCesar(texto.lowercase(), 8)
     } else if (jugador.raza.equals("Goblin", true)) {
-        return cifradoCesar(comunicacion(texto, jugador), 8)
+        return cifradoCesar(texto, 12)
     } else return "a"
 }
+
+fun comunicacion(
+    jugador: Jugador,
+    respuesta: String
+): String {
+
+    when (jugador.edad) {
+        in 12..22 -> {
+            if (esMayuscula(respuesta) &&
+                respuesta.get(index = 0) == '¿' &&
+                respuesta.get(index = respuesta.length - 1) == '?'
+            ) {
+                return "Tranqui, se lo que hago"
+
+            } else
+                if (esMayuscula(respuesta)) {
+                    return "Eh , relajate"
+                } else if (!esMayuscula(respuesta) && respuesta.get(index = 0) == '¿' && respuesta.get(
+                        index = respuesta.length - 1
+                    ) == '?'
+                ) {
+                    return "De lujo"
+                } else if (respuesta == jugador.nombre) {
+                    return "¿Que pasa?"
+                } else return "Yo que sé"
+        }
+
+        in 22..65 ->
+            if (esMayuscula(respuesta) &&
+                respuesta.get(index = 0) == '¿' &&
+                respuesta.get(index = respuesta.length - 1) == '?'
+            ) {
+                return "Estoy buscando la mejor solución"
+            } else
+                if (esMayuscula(respuesta)) {
+                    return "Eh , relajate"
+                } else if (!esMayuscula(respuesta) && respuesta.get(index = 0) == '¿' && respuesta.get(
+                        index = respuesta.length - 1
+                    ) == '?'
+                ) {
+                    return "En la flor de la vida,\n pero me empieza a doler la espalda"
+                } else if (respuesta == jugador.nombre) {
+                    return "¿Necesitas algo?\""
+                } else return "En mis tiempos esto no pasaba"
+
+        else ->
+            if (esMayuscula(respuesta) &&
+                (respuesta.get(index = 0) == '¿') &&
+                (respuesta.get(index = respuesta.length - 1) == '?')
+            ) {
+                return "Que no te escucho!"
+            } else if (respuesta.equals("¿Como estas?")) {
+                return "No me puedo mover"
+            } else if (esMayuscula(respuesta)) {
+                return "Háblame más alto que no te escucho"
+            } else if (respuesta == jugador.nombre) {
+                return "Las 5 de la tarde"
+            } else return "En mis tiempos esto no pasaba"
+
+    }
+}
+
 
 fun cifradoCesar(texto: String, codigo: Int): String {
     var texto1 = texto.lowercase()
