@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ejercicio11</string>
+    <string name="app_name">ProyectoPDMD</string>
     <string name="imagen_de_inicio">imagen de inicio</string>
     <string name="guerrero">GUERRERO</string>
     <string name="ladron">LADRON</string>
@@ -21,4 +21,13 @@
     <string name="ingresa_mensaje">Por favor, ingresa un mensaje</string>
     <string name="mensajedevoz">Di algo al microfono...</string>
     <string name="mensajedevoznoadmitido">Mensaje de voz erróneo o no admitido</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
